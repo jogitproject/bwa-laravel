@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+    <div class="container">
         <div class="row">
             <div class="col-8 offset-2">
-                <div class="card">
+                <div class="card mt-3">
                     <div class="card-header">
                         My Camps
                     </div>
@@ -16,7 +16,7 @@
                                     <th>User</th>
                                     <th>Camp</th>
                                     <th>Price</th>
-                                    <th>Register Date</th>
+                                    <th>Register Data</th>
                                     <th>Paid Status</th>
                                 </tr>
                             </thead>
@@ -25,10 +25,17 @@
                                     <tr>
                                         <td>{{$checkout->User->name}}</td>
                                         <td>{{$checkout->Camp->title}}</td>
-                                        <td>${{$checkout->Camp->price}}</td>
+                                        <td>
+                                            <strong>
+                                                Rp. {{$checkout->total}}
+                                                @if ($checkout->discount_id)
+                                                    <span class="badge bg-success">Disc {{$checkout->discount_percentage}}%</span>
+                                                @endif
+                                            </strong>    
+                                        </td>
                                         <td>{{$checkout->created_at->format('M d Y')}}</td>
                                         <td>
-                                        <strong>{{$checkout->payment_status}}</strong>
+                                            <strong>{{$checkout->payment_status}}</strong>
                                         </td>
                                     </tr>
                                 @empty
@@ -42,5 +49,5 @@
                 </div>
             </div>
         </div>
-    </div
+    </div>
 @endsection
